@@ -142,7 +142,7 @@ const Index = () => {
                   <PlayCircle className="w-5 h-5 mr-2" />
                   Mulai Belajar Sekarang
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="outline" className="border-white text-primary hover:bg-white hover:text-primary">
                   Lihat Program Kursus
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
