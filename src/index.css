@@ -57,12 +57,19 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -153,86 +160,5 @@ All colors MUST be HSL.
   
   .shadow-hero {
     box-shadow: var(--shadow-hero);
-  }
-}
-
-@layer utilities {
-  /* Override existing span.text-sm to remove background and show only logo */
-  span.text-sm {
-    /* Remove all backgrounds, borders, and padding that create the frame */
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: url('./assets/logo RADAR.png') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    
-    /* Hide text and show logo */
-    text-indent: -9999px;
-    font-size: 0;
-    width: 32px;
-    height: 32px;
-    display: inline-block;
-    vertical-align: middle;
-    overflow: hidden;
-  }
-
-  /* Remove any parent container styling that might add frames */
-  span.text-sm:before,
-  span.text-sm:after {
-    display: none !important;
-  }
-
-  /* Ensure no hover or focus states add backgrounds */
-  span.text-sm:hover,
-  span.text-sm:focus,
-  span.text-sm:active {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
-  }
-
-  /* Dark mode - keep same transparent background */
-  .dark span.text-sm {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: url('./assets/logo RADAR.png') !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  /* Remove any styling from parent elements that might contain the logo */
-  .font-heading.font-bold.text-xl.text-primary + span.text-sm,
-  span.text-sm + .font-heading.font-bold.text-xl.text-primary {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-  }
-
-  /* Alternative: Target the specific logo container if it has a wrapper */
-  .logo-container,
-  .brand-container,
-  div:has(span.text-sm) {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-  }
-
-  /* Responsive logo sizes */
-  @media (max-width: 768px) {
-    span.text-sm {
-      width: 24px;
-      height: 24px;
-    }
   }
 }
