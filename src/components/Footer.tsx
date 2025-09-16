@@ -44,7 +44,7 @@ const Footer = () => {
                 style={{ background: 'transparent', border: 'none', boxShadow: 'none', padding: 0 }}
               />
               <span className="font-heading font-bold text-xl">
-                RADAR Education
+                RADAR Education Center
               </span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
