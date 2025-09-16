@@ -24,7 +24,7 @@ const Navigation = () => {
           {/* Logo - Modified to remove frame */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="./assets/logo RADAR.png" 
+              src="../assets/logo RADAR.png" 
               alt="RADAR Logo" 
               className="w-8 h-8 object-contain"
               style={{ 
