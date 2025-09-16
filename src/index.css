@@ -57,12 +57,19 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -154,69 +161,61 @@ All colors MUST be HSL.
   .shadow-hero {
     box-shadow: var(--shadow-hero);
   }
-}
 
-@layer utilities {
-  /* RADAR Logo Implementation - Clean and Simple */
-  .radar-brand {
-    @apply flex items-center gap-2;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-  }
-  
-  .radar-brand::before {
-    content: '';
+  /* Logo Override - Replace R text with logo image */
+  .logo-override {
+    background-image: url('./assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
     width: 32px;
     height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+/* Override huruf R dengan logo - Multiple selectors to catch the element */
+@layer utilities {
+  /* Target span with text-sm class that might contain "R" */
+  span.text-sm {
     background-image: url('./assets/logo RADAR.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    display: inline-block;
-    flex-shrink: 0;
-  }
-  
-  /* Hide original R text */
-  .radar-brand .logo-r,
-  .radar-brand > span:first-child {
-    display: none;
-  }
-
-  /* Alternative method using img tag */
-  .radar-logo-img {
+    text-indent: -9999px;
     width: 32px;
     height: 32px;
-    object-fit: contain;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    box-shadow: none !important;
+    display: inline-block;
+    vertical-align: middle;
   }
 
-  /* Dark mode support */
-  .dark .radar-brand::before {
+  /* Alternative selector - target span next to RADAR Education text */
+  .font-heading.font-bold.text-xl.text-primary + span.text-sm,
+  span.text-sm + .font-heading.font-bold.text-xl.text-primary::before {
+    content: url('./assets/logo RADAR.png');
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  /* Hide original R text if above doesn't work */
+  span.text-sm:not(:empty) {
+    font-size: 0;
     background-image: url('./assets/logo RADAR.png');
-    filter: brightness(1.1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
   }
 
-  /* Responsive logo sizes */
-  @media (max-width: 768px) {
-    .radar-brand::before,
-    .radar-logo-img {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  /* Remove any unwanted backgrounds or borders on logo containers */
-  .logo-container,
-  .brand-container {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+  /* Ensure the logo displays properly in both light and dark mode */
+  .dark span.text-sm {
+    background-image: url('./assets/logo RADAR.png');
   }
 }
