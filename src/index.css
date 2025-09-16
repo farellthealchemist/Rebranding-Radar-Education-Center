@@ -161,4 +161,61 @@ All colors MUST be HSL.
   .shadow-hero {
     box-shadow: var(--shadow-hero);
   }
+
+  /* Logo Override - Replace R text with logo image */
+  .logo-override {
+    background-image: url('./assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+/* Override huruf R dengan logo - Multiple selectors to catch the element */
+@layer utilities {
+  /* Target span with text-sm class that might contain "R" */
+  span.text-sm {
+    background-image: url('./assets/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* Alternative selector - target span next to RADAR Education text */
+  .font-heading.font-bold.text-xl.text-primary + span.text-sm,
+  span.text-sm + .font-heading.font-bold.text-xl.text-primary::before {
+    content: url('./assets/logo RADAR.png');
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  /* Hide original R text if above doesn't work */
+  span.text-sm:not(:empty) {
+    font-size: 0;
+    background-image: url('./assets/logo RADAR.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* Ensure the logo displays properly in both light and dark mode */
+  .dark span.text-sm {
+    background-image: url('./assets/logo.png');
+  }
 }
