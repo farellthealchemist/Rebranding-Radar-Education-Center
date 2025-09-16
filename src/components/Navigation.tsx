@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoRadar from "@/assets/logo RADAR.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,7 @@ const Navigation = () => {
           {/* Logo - Modified to remove frame */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="../../assets/logo RADAR.png" 
+              src={logoRadar} 
               alt="RADAR Logo" 
               className="w-8 h-8 object-contain"
               style={{ 
