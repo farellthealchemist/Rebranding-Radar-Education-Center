@@ -170,7 +170,7 @@ All colors MUST be HSL.
     content: '';
     width: 32px;
     height: 32px;
-    background-image: url('./assets/logo.png');
+    background-image: url('./assets/logo RADAR.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -198,7 +198,7 @@ All colors MUST be HSL.
 
   /* Dark mode support */
   .dark .radar-brand::before {
-    background-image: url('./assets/logo.png');
+    background-image: url('./assets/logo RADAR.png');
     filter: brightness(1.1);
   }
 
