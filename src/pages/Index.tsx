@@ -293,7 +293,7 @@ const Index = () => {
             <div>
               <Badge className="mb-4">Tentang Kami</Badge>
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-                PT. Radar Teknologi Komputer Education
+                PT. Radar Teknologi Komputer Education Center
               </h2>
               <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
                 Sejak didirikan, RADAR Education Center telah menjadi pionir dalam pendidikan IT di Indonesia. 
