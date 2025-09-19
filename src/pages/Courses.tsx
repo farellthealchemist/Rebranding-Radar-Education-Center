@@ -305,20 +305,20 @@ const OptimizedCourses = () => {
             </p>
 
             {/* Quick Stats */}
-            <div className={`grid grid-cols-3 gap-8 max-w-2xl mx-auto transition-all duration-1000 ease-out delay-600 ${
+            <div className={`grid grid-cols-3 gap-4 sm:gap-8 max-w-lg sm:max-w-2xl mx-auto text-center transition-all duration-1000 ease-out delay-600 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold mb-1">750+</div>
-                <div className="text-sm opacity-75">Alumni Tersertifikasi</div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">750+</div>
+                <div className="text-xs sm:text-sm opacity-75">Alumni</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold mb-1">4.8/5</div>
-                <div className="text-sm opacity-75">Rating Kepuasan</div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">4.8/5</div>
+                <div className="text-xs sm:text-sm opacity-75">Rating</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold mb-1">85%</div>
-                <div className="text-sm opacity-75">Job Placement</div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">85%</div>
+                <div className="text-xs sm:text-sm opacity-75">Job Rate</div>
               </div>
             </div>
           </div>
@@ -329,32 +329,33 @@ const OptimizedCourses = () => {
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-lg p-6">
-            <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-center justify-between">
               {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <div className="relative w-full md:flex-1 max-w-md">
+                <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 md:w-5 md:h-5" />
                 <input
                   type="text"
-                  placeholder="Cari kursus yang Anda inginkan..."
+                  placeholder="Cari kursus..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent smooth-transition"
+                  className="w-full pl-10 md:pl-12 pr-4 py-2 md:py-3 text-sm md:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent smooth-transition"
                 />
               </div>
 
               {/* Categories */}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 md:gap-3 w-full md:w-auto">
                 {categories.map((category) => (
                   <button
                     key={category.name}
                     onClick={() => setActiveCategory(category.name)}
-                    className={`px-6 py-2 rounded-lg font-medium smooth-transition hover-lift ${
+                    className={`px-3 md:px-6 py-1.5 md:py-2 text-xs md:text-sm rounded-lg font-medium smooth-transition hover-lift ${
                       activeCategory === category.name
                         ? 'bg-red-600 text-white shadow-lg'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    {category.name} ({category.count})
+                    <span className="hidden sm:inline">{category.name} ({category.count})</span>
+                    <span className="sm:hidden">{category.name}</span>
                   </button>
                 ))}
               </div>
@@ -366,7 +367,7 @@ const OptimizedCourses = () => {
       {/* Enhanced Courses Grid */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={coursesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div ref={coursesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredCourses.map((course, index) => (
               <div 
                 key={course.id} 
@@ -385,8 +386,8 @@ const OptimizedCourses = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 smooth-transition"></div>
                   
                   {/* Badges */}
-                  <div className="absolute top-3 left-3">
-                    <span className={`px-2 py-1 text-xs font-medium rounded-md ${
+                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
+                    <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-medium rounded-md ${
                       course.category === 'Programming' ? 'bg-blue-100 text-blue-800' :
                       course.category === 'Office' ? 'bg-green-100 text-green-800' :
                       'bg-purple-100 text-purple-800'
@@ -395,14 +396,14 @@ const OptimizedCourses = () => {
                     </span>
                   </div>
 
-                  <div className="absolute top-3 right-3 flex flex-col gap-1">
+                  <div className="absolute top-2 sm:top-3 right-2 sm:right-3 flex flex-col gap-1">
                     {course.popular && (
-                      <span className="px-2 py-1 bg-red-600 text-white text-xs font-medium rounded-md">
+                      <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-medium rounded-md">
                         Popular
                       </span>
                     )}
                     {course.discount && (
-                      <span className="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-md">
+                      <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-bold rounded-md">
                         -{course.discount}
                       </span>
                     )}
@@ -410,23 +411,23 @@ const OptimizedCourses = () => {
                 </div>
                 
                 {/* Course Content */}
-                <div className="p-5">
+                <div className="p-3 sm:p-5">
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-bold text-lg gradient-text group-hover:scale-105 smooth-transition line-clamp-2">
+                    <h3 className="font-bold text-base sm:text-lg gradient-text group-hover:scale-105 smooth-transition leading-tight">
                       {course.title}
                     </h3>
-                    <div className="flex items-center gap-1 ml-2">
+                    <div className="flex items-center gap-1 ml-2 flex-shrink-0">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       <span className="text-xs font-medium">{course.rating}</span>
                     </div>
                   </div>
                   
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-2">
                     {course.description}
                   </p>
                   
                   {/* Course Stats */}
-                  <div className="grid grid-cols-3 gap-2 mb-4 py-3 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-3 gap-1 sm:gap-2 mb-3 sm:mb-4 py-2 sm:py-3 bg-gray-50 rounded-lg">
                     <div className="text-center">
                       <Clock className="w-3 h-3 mx-auto mb-1 text-red-600" />
                       <div className="text-xs font-medium">{course.duration}</div>
@@ -442,46 +443,47 @@ const OptimizedCourses = () => {
                   </div>
 
                   {/* Key Features */}
-                  <div className="mb-4">
-                    <h4 className="font-medium text-sm mb-2 flex items-center gap-2">
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className="font-medium text-xs sm:text-sm mb-2 flex items-center gap-2">
                       <BookOpen className="w-3 h-3 text-red-600" />
-                      Materi Utama:
+                      <span className="hidden sm:inline">Materi Utama:</span>
+                      <span className="sm:hidden">Materi:</span>
                     </h4>
                     <div className="space-y-1">
                       {course.features.slice(0, 2).map((feature, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
                           <CheckCircle className="w-2 h-2 text-green-500 flex-shrink-0" />
-                          {feature}
+                          <span className="truncate">{feature}</span>
                         </div>
                       ))}
                       <div className="text-xs text-gray-500">
-                        +{course.features.length - 2} materi lainnya
+                        +{course.features.length - 2} lainnya
                       </div>
                     </div>
                   </div>
 
                   {/* Price & CTA */}
-                  <div className="border-t pt-4">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="border-t pt-3 sm:pt-4">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
                       <div>
                         <div className="flex items-center gap-1">
-                          <span className="text-lg font-bold text-red-600">{course.price}</span>
+                          <span className="text-base sm:text-lg font-bold text-red-600">{course.price}</span>
                           {course.originalPrice && (
-                            <span className="text-sm text-gray-400 line-through">{course.originalPrice}</span>
+                            <span className="text-xs sm:text-sm text-gray-400 line-through">{course.originalPrice}</span>
                           )}
                         </div>
                         <div className="text-xs text-gray-500">Per program</div>
                       </div>
-                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md">
+                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md hidden sm:inline">
                         {course.level}
                       </span>
                     </div>
                     
                     <div className="grid grid-cols-2 gap-2">
-                      <button className="px-3 py-2 border border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 smooth-transition text-sm">
+                      <button className="px-2 sm:px-3 py-1.5 sm:py-2 border border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 smooth-transition text-xs sm:text-sm">
                         Detail
                       </button>
-                      <button className="px-3 py-2 hero-gradient text-white font-medium rounded-md hover:scale-105 smooth-transition btn-glow text-sm">
+                      <button className="px-2 sm:px-3 py-1.5 sm:py-2 hero-gradient text-white font-medium rounded-md hover:scale-105 smooth-transition btn-glow text-xs sm:text-sm">
                         Daftar
                       </button>
                     </div>
@@ -582,4 +584,4 @@ const OptimizedCourses = () => {
   );
 };
 
-export default OptimizedCourses;  
+export default OptimizedCourses;
