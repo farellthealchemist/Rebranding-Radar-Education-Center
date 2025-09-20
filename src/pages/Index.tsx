@@ -100,7 +100,7 @@ const useCountAnimation = (targetValue, duration = 2000, isVisible = false) => {
 const Homepage = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ delay: 200 });
   const { ref: servicesRef, visibleItems } = useStaggeredAnimation(4, 150, 300);
-  const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation({ threshold: 0.2, rootMargin: "-100px" });
+  const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation({ threshold: 0.1, rootMargin: "-50px" });
   const { ref: testimonialsRef, visibleItems: testimonialVisible } = useStaggeredAnimation(3, 200, 250);
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation({ threshold: 0.3 });
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
@@ -327,7 +327,7 @@ const Homepage = () => {
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 overflow-hidden min-h-[100vh] sm:min-h-[80vh]">
+      <section ref={heroRef} className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden min-h-screen flex items-center">
         <div className="absolute inset-0 hero-gradient"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
@@ -335,7 +335,7 @@ const Homepage = () => {
           style={{ backgroundImage: "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=800&fit=crop)" }}
         ></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             <div className="text-white order-2 lg:order-1">
               <div className={`transition-all duration-800 ease-out ${
@@ -399,7 +399,7 @@ const Homepage = () => {
               </div>
             </div>
             
-            <div className={`relative order-1 lg:order-2 hidden sm:flex justify-center lg:justify-end items-center lg:items-start lg:pt-12 transition-all duration-1000 ease-out delay-400 ${
+            <div className={`relative order-1 lg:order-2 flex sm:flex justify-center lg:justify-end items-center lg:items-start transition-all duration-1000 ease-out delay-400 ${
               heroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
             }`}>
               <div className="w-full max-w-sm lg:max-w-none">
@@ -448,7 +448,7 @@ const Homepage = () => {
 
       {/* Services Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12 lg:mb-16">
             <span className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-2 bg-red-50 text-red-600 rounded-full text-xs sm:text-sm font-medium">
               Program Unggulan
