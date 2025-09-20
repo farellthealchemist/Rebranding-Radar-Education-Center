@@ -233,7 +233,7 @@ const OptimizedAbout = () => {
       `}</style>
 
       {/* Enhanced Hero Section with breadcrumb */}
-      <section className="relative py-24 hero-gradient text-white overflow-hidden">
+      <section className="relative py-32 hero-gradient text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
         
@@ -267,12 +267,30 @@ const OptimizedAbout = () => {
               </span>
             </h1>
             
-            <p className={`text-xl md:text-2xl max-w-4xl mx-auto opacity-90 leading-relaxed transition-all duration-1000 ease-out delay-400 ${
+            <p className={`text-xl md:text-2xl max-w-4xl mx-auto opacity-90 leading-relaxed mb-8 transition-all duration-1000 ease-out delay-400 ${
               heroVisible ? 'opacity-90 translate-y-0' : 'opacity-0 translate-y-6'
             }`}>
               Sejak 2008, RADAR Education Center telah menjadi pionir pendidikan IT terpercaya, 
               mengembangkan talenta teknologi dari tingkat pemula hingga profesional di seluruh Indonesia.
             </p>
+
+            {/* Quick Stats - Added like courses page */}
+            <div className={`grid grid-cols-3 gap-4 sm:gap-8 max-w-lg sm:max-w-2xl mx-auto text-center transition-all duration-1000 ease-out delay-600 ${
+              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">1000+</div>
+                <div className="text-xs sm:text-sm opacity-75">Alumni</div>
+              </div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">4.8/5</div>
+                <div className="text-xs sm:text-sm opacity-75">Rating</div>
+              </div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">16+</div>
+                <div className="text-xs sm:text-sm opacity-75">Tahun</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
