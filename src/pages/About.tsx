@@ -368,7 +368,7 @@ const OptimizedAbout = () => {
         </div>
       </section>
 
-      {/* Company Timeline */}
+      {/* Company Timeline - Mobile Responsive */}
       <section ref={timelineRef} className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -383,7 +383,8 @@ const OptimizedAbout = () => {
             </p>
           </div>
 
-          <div className="relative">
+          {/* Desktop Timeline */}
+          <div className="hidden md:block relative">
             {/* Timeline line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 timeline-line h-full rounded-full"></div>
             
@@ -416,6 +417,39 @@ const OptimizedAbout = () => {
                         )}
                       </div>
                       <h3 className="font-bold text-lg mb-2 text-gray-900">{item.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Timeline */}
+          <div className="md:hidden relative">
+            {/* Mobile timeline line */}
+            <div className="absolute left-6 top-0 w-0.5 bg-red-600 h-full rounded-full"></div>
+            
+            <div className="space-y-8">
+              {timeline.map((item, index) => (
+                <div 
+                  key={index}
+                  className={`relative flex items-start transition-all duration-1000 ease-out ${
+                    timelineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 200}ms` }}
+                >
+                  {/* Mobile timeline dot */}
+                  <div className="w-3 h-3 bg-red-600 rounded-full border-2 border-white shadow-lg z-10 mt-2 flex-shrink-0"></div>
+                  
+                  {/* Mobile content */}
+                  <div className="ml-6 flex-1">
+                    <div className="bg-white p-4 rounded-lg shadow-md hover-lift smooth-transition">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="text-red-600">{item.icon}</div>
+                        <span className="text-red-600 font-bold text-base">{item.year}</span>
+                      </div>
+                      <h3 className="font-bold text-base mb-2 text-gray-900">{item.title}</h3>
                       <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </div>
@@ -613,28 +647,28 @@ const OptimizedAbout = () => {
               </p>
               
               {/* Contact info cards */}
-              <div className={`grid md:grid-cols-3 gap-6 mb-10 transition-all duration-1000 ease-out delay-400 ${
+              <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10 transition-all duration-1000 ease-out delay-400 ${
                 ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}>
-                <div className="glass-effect text-gray-900 p-6 rounded-xl hover-lift smooth-transition">
-                  <Phone className="w-6 h-6 text-red-600 mx-auto mb-3" />
-                  <h3 className="font-semibold mb-2">Telepon & WhatsApp</h3>
-                  <p className="text-sm">0857-8276-3529</p>
+                <div className="glass-effect text-gray-900 p-4 sm:p-6 rounded-xl hover-lift smooth-transition">
+                  <Phone className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mx-auto mb-2 sm:mb-3" />
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Telepon & WhatsApp</h3>
+                  <p className="text-xs sm:text-sm">0857-8276-3529</p>
                   <p className="text-xs text-gray-500 mt-1">Respon cepat via WA</p>
                 </div>
                 
-                <div className="glass-effect text-gray-900 p-6 rounded-xl hover-lift smooth-transition">
-                  <Mail className="w-6 h-6 text-red-600 mx-auto mb-3" />
-                  <h3 className="font-semibold mb-2">Email Resmi</h3>
-                  <p className="text-sm">asep@radarteknologikomputer.id</p>
+                <div className="glass-effect text-gray-900 p-4 sm:p-6 rounded-xl hover-lift smooth-transition">
+                  <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mx-auto mb-2 sm:mb-3" />
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Email Resmi</h3>
+                  <p className="text-xs sm:text-sm">asep@radarteknologikomputer.id</p>
                   <p className="text-xs text-gray-500 mt-1">Info lengkap via email</p>
                 </div>
                 
-                <div className="glass-effect text-gray-900 p-6 rounded-xl hover-lift smooth-transition">
-                  <MapPin className="w-6 h-6 text-red-600 mx-auto mb-3" />
-                  <h3 className="font-semibold mb-2">Lokasi Kursus</h3>
-                  <p className="text-sm">Tangerang, Banten</p>
-                  <p className="text-xs text-gray-500 mt-1">Mudah dijangkau transportasi umum</p>
+                <div className="glass-effect text-gray-900 p-4 sm:p-6 rounded-xl hover-lift smooth-transition">
+                  <MapPin className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mx-auto mb-2 sm:mb-3" />
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Lokasi Kursus</h3>
+                  <p className="text-xs sm:text-sm">Tangerang, Banten</p>
+                  <p className="text-xs text-gray-500 mt-1">Mudah dijangkau</p>
                 </div>
               </div>
               
