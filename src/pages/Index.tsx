@@ -252,7 +252,7 @@ const Homepage = () => {
 
   const styles = `
     .hero-gradient {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%);
     }
     .gradient-text-animated {
       background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c);
@@ -327,13 +327,20 @@ const Homepage = () => {
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden min-h-screen flex items-center">
+      <section ref={heroRef} className="relative pt-16 sm:pt-20 pb-20 sm:pb-24 overflow-hidden min-h-screen flex items-center">
         <div className="absolute inset-0 hero-gradient"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=800&fit=crop)" }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=800&fit=crop)",
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "scroll"
+          }}
         ></div>
+        <div className="absolute inset-0 bg-red-600/80"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
@@ -398,8 +405,8 @@ const Homepage = () => {
                 </div>
               </div>
 
-              {/* Instructor Cards - Positioned after stats */}
-              <div className={`mt-8 sm:mt-12 lg:hidden flex flex-col space-y-4 transition-all duration-1000 ease-out delay-1000 ${
+              {/* Instructor Cards - Positioned after stats dengan spacing lebih besar */}
+              <div className={`mt-12 sm:mt-16 mb-8 lg:hidden flex flex-col space-y-4 transition-all duration-1000 ease-out delay-1000 ${
                 heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 <div className="w-full p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
