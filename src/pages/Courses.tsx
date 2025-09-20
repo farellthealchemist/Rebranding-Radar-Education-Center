@@ -1,24 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
+  Clock, 
   Users, 
   Award, 
   BookOpen, 
-  Target, 
-  Clock, 
-  Shield,
-  MapPin,
-  Phone,
-  Mail,
-  Calendar,
   CheckCircle,
-  Star,
   ArrowRight,
-  Building,
-  Zap,
-  TrendingUp
+  Star,
+  Filter,
+  Search,
+  Phone,
+  Download,
+  Target,
+  TrendingUp,
+  Shield
 } from "lucide-react";
 
-// Optimized Animation Hooks
+// Optimized Animation Hooks (consistent with homepage)
 const useScrollAnimation = ({ delay = 0, threshold = 0.1, rootMargin = "0px" } = {}) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
@@ -71,130 +69,169 @@ const useStaggeredAnimation = (itemCount, staggerDelay = 120, initialDelay = 200
   return { ref, visibleItems };
 };
 
-const OptimizedAbout = () => {
+const OptimizedCourses = () => {
+  const [activeCategory, setActiveCategory] = useState("Semua");
+  const [searchTerm, setSearchTerm] = useState("");
+  
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ delay: 300 });
-  const { ref: storyRef, isVisible: storyVisible } = useScrollAnimation({ threshold: 0.2, rootMargin: "-80px" });
-  const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation({ threshold: 0.15 });
-  const { ref: valuesRef, visibleItems: valueItems } = useStaggeredAnimation(6, 100, 250);
-  const { ref: instructorsRef, visibleItems: instructorItems } = useStaggeredAnimation(2, 200, 300);
-  const { ref: achievementsRef, isVisible: achievementsVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: coursesRef, visibleItems } = useStaggeredAnimation(4, 150, 250);
+  const { ref: guaranteeRef, visibleItems: guaranteeItems } = useStaggeredAnimation(3, 100, 200);
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
 
-  // Enhanced company values with more comprehensive coverage
-  const values = [
+  const courses = [
     {
-      icon: <Users className="w-8 h-8 text-red-600" />,  
-      title: "Untuk Semua Kalangan",
-      subtitle: "SD - Perguruan Tinggi",
-      description: "Program pembelajaran komprehensif untuk semua tingkatan pendidikan, dari siswa SD hingga mahasiswa perguruan tinggi",
-      highlight: "All Ages Welcome"
+      id: 1,
+      title: "Programming Fundamentals",
+      category: "Programming",
+      description: "Pelajari dasar-dasar pemrograman dengan Python dan Java. Cocok untuk pemula yang ingin memulai karir di bidang software development.",
+      image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=600&h=400&fit=crop",
+      duration: "3-6 Bulan",
+      students: "150+",
+      level: "Pemula - Menengah",
+      price: "Rp 2.500.000",
+      originalPrice: "Rp 3.000.000",
+      discount: "17%",
+      rating: 4.8,
+      popular: true,
+      features: [
+        "Python Programming",
+        "Java Fundamentals", 
+        "Database Basics",
+        "Web Development Intro",
+        "Project Portfolio"
+      ],
+      outcomes: [
+        "Menguasai sintaks Python dan Java",
+        "Memahami konsep OOP dan database",
+        "Dapat membuat aplikasi web sederhana",
+        "Siap untuk advanced programming"
+      ]
     },
     {
-      icon: <Award className="w-8 h-8 text-red-600" />,
-      title: "Sertifikat Terakreditasi", 
-      subtitle: "Industry Recognition",
-      description: "Sertifikat resmi yang diakui industri dan institusi pendidikan, meningkatkan kredibilitas profesional Anda",
-      highlight: "Certified Programs"
+      id: 2,
+      title: "Scratch Visual Programming",
+      category: "Programming",
+      description: "Pengenalan programming untuk anak-anak dan pemula menggunakan Scratch. Belajar logika programming dengan cara yang menyenangkan.",
+      image: "https://images.unsplash.com/photo-1596496050827-8299e0220de1?w=600&h=400&fit=crop",
+      duration: "2-3 Bulan",
+      students: "200+",
+      level: "Pemula",
+      price: "Rp 750.000",
+      originalPrice: "Rp 900.000",
+      discount: "17%",
+      rating: 4.9,
+      popular: false,
+      features: [
+        "Scratch Basics",
+        "Game Development",
+        "Animation Creation",
+        "Interactive Stories",
+        "Logic Building"
+      ],
+      outcomes: [
+        "Memahami logika programming",
+        "Dapat membuat game interaktif",
+        "Mengembangkan problem solving",
+        "Foundation untuk text-based coding"
+      ]
     },
     {
-      icon: <Clock className="w-8 h-8 text-red-600" />,
-      title: "Jadwal Fleksibel",
-      subtitle: "Sesuai Kebutuhan Anda",
-      description: "Pembelajaran adaptif dengan jadwal pagi, siang, dan malam. Akses materi 24/7 melalui platform digital",
-      highlight: "24/7 Access"
+      id: 3,
+      title: "Microsoft Office Mastery",
+      category: "Office",
+      description: "Kuasai Microsoft Office (Word, Excel, PowerPoint) untuk produktivitas maksimal di tempat kerja dan pendidikan.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      duration: "2-4 Bulan",
+      students: "300+",
+      level: "Pemula - Mahir",
+      price: "Rp 1.200.000",
+      originalPrice: "Rp 1.500.000",
+      discount: "20%",
+      rating: 4.7,
+      popular: true,
+      features: [
+        "Word Advanced",
+        "Excel Formulas & Macros",
+        "PowerPoint Design",
+        "Data Analysis",
+        "Business Templates"
+      ],
+      outcomes: [
+        "Mahir Word untuk dokumen profesional",
+        "Menguasai Excel untuk data analysis",
+        "Membuat presentasi yang menarik",
+        "Meningkatkan produktivitas kerja 300%"
+      ]
     },
     {
-      icon: <BookOpen className="w-8 h-8 text-red-600" />,
-      title: "Kurikulum Terkini",
-      subtitle: "Industry-Aligned",
-      description: "Materi pembelajaran yang selalu diperbarui mengikuti perkembangan teknologi dan kebutuhan pasar kerja",
-      highlight: "Updated Monthly"
-    },
-    {
-      icon: <Target className="w-8 h-8 text-red-600" />,
-      title: "Praktek Intensif",
-      subtitle: "70% Hands-On",
-      description: "Fokus pada penerapan praktis dengan rasio 70% praktek dan 30% teori untuk hasil pembelajaran optimal",
-      highlight: "Project-Based"
-    },
-    {
-      icon: <Shield className="w-8 h-8 text-red-600" />,
-      title: "Garansi Pembelajaran",
-      subtitle: "Money Back Guarantee",
-      description: "Jaminan kualitas dengan opsi mengulang kelas gratis jika belum menguasai materi sepenuhnya",
+      id: 4,
+      title: "Network Administration",
+      category: "Networking",
+      description: "Pelajari administrasi jaringan, keamanan cyber, dan infrastruktur IT. Ideal untuk IT support dan network administrator.",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+      duration: "4-6 Bulan",
+      students: "100+",
+      level: "Menengah - Mahir",
+      price: "Rp 3.500.000",
+      originalPrice: "Rp 4.200.000",
+      discount: "17%",
+      rating: 4.6,
+      popular: false,
+      features: [
+        "Network Fundamentals",
+        "Cisco Configuration",
+        "Cybersecurity Basics",
+        "Server Administration",
+        "Troubleshooting"
+      ],
+      outcomes: [
+        "Dapat merancang infrastruktur jaringan",
+        "Menguasai konfigurasi Cisco devices",
+        "Memahami security protocols",
+        "Job-ready sebagai Network Admin"
+      ]
+    }
+  ];
+
+  const categories = [
+    { name: "Semua", count: courses.length },
+    { name: "Programming", count: courses.filter(c => c.category === "Programming").length },
+    { name: "Office", count: courses.filter(c => c.category === "Office").length },
+    { name: "Networking", count: courses.filter(c => c.category === "Networking").length }
+  ];
+
+  const guaranteeFeatures = [
+    { 
+      icon: <Shield className="w-8 h-8 text-red-600" />, 
+      title: "Garansi Mengulang", 
+      description: "Bisa mengulang kelas GRATIS jika belum menguasai materi",
       highlight: "100% Guarantee"
+    },
+    { 
+      icon: <Users className="w-8 h-8 text-red-600" />, 
+      title: "Kelas Kecil", 
+      description: "Maksimal 12 siswa per kelas untuk perhatian personal optimal",
+      highlight: "Personal Attention"
+    },
+    { 
+      icon: <Target className="w-8 h-8 text-red-600" />, 
+      title: "Job Assistance", 
+      description: "Bantuan penempatan kerja dan career guidance setelah lulus",
+      highlight: "85% Job Rate"
     }
   ];
 
-  // Company timeline
-  const timeline = [
-    {
-      year: "2008",
-      title: "Pendirian RADAR",
-      description: "Dimulai sebagai kursus komputer lokal di Tangerang dengan fokus Microsoft Office",
-      icon: <Building className="w-5 h-5" />
-    },
-    {
-      year: "2012", 
-      title: "Ekspansi Program",
-      description: "Menambah program Programming dan Networking seiring meningkatnya kebutuhan IT",
-      icon: <Zap className="w-5 h-5" />
-    },
-    {
-      year: "2016",
-      title: "Sertifikasi Resmi",
-      description: "Mendapat akreditasi resmi dan kemitraan dengan institusi pendidikan tinggi",
-      icon: <Award className="w-5 h-5" />
-    },
-    {
-      year: "2020",
-      title: "Digital Transformation",
-      description: "Mengadaptasi pembelajaran hybrid dan platform online di era pandemi",
-      icon: <TrendingUp className="w-5 h-5" />
-    },
-    {
-      year: "2024",
-      title: "1000+ Alumni",
-      description: "Mencapai milestone 1000+ alumni tersertifikasi dengan tingkat penempatan kerja 85%",
-      icon: <Users className="w-5 h-5" />
-    }
-  ];
-
-  // Enhanced instructor profiles
-  const instructors = [
-    {
-      name: "Asep Surahmat M.Kom",
-      title: "Lead Instructor & Founder",
-      specialization: "Programming, Database Management, System Analysis",
-      experience: "15+ tahun pengalaman industri IT",
-      credentials: ["M.Kom dari ITB", "Certified Java Developer", "Database Specialist"],
-      achievements: "Telah melatih 500+ profesional IT",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      rating: 4.9
-    },
-    {
-      name: "Rizqi Darmawan",
-      title: "Senior Instructor",
-      specialization: "Network Security, Infrastructure, Cloud Computing",
-      experience: "12+ tahun pengalaman networking & security",
-      credentials: ["CCNA Certified", "CompTIA Security+", "AWS Cloud Practitioner"],
-      achievements: "Expert dalam implementasi jaringan enterprise",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-      rating: 4.8
-    }
-  ];
-
-  // Company achievements
-  const achievements = [
-    { number: "1000+", label: "Alumni Tersertifikasi", description: "Lulusan yang telah berhasil menyelesaikan program" },
-    { number: "15+", label: "Tahun Pengalaman", description: "Melayani pendidikan IT sejak tahun 2008" },
-    { number: "85%", label: "Job Placement Rate", description: "Alumni yang berhasil mendapat pekerjaan dalam 6 bulan" },
-    { number: "4.8/5", label: "Rating Kepuasan", description: "Berdasarkan feedback dari 500+ alumni" }
-  ];
+  // Filter courses based on category and search
+  const filteredCourses = courses.filter(course => {
+    const matchesCategory = activeCategory === "Semua" || course.category === activeCategory;
+    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         course.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="min-h-screen pt-16 overflow-x-hidden">
-      {/* Optimized Styles */}
+      {/* Consistent Styles with Homepage */}
       <style jsx>{`
         .hero-gradient {
           background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
@@ -210,32 +247,25 @@ const OptimizedAbout = () => {
         }
         .hover-lift:hover {
           transform: translateY(-4px);
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
         }
         .smooth-transition {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .timeline-line {
-          background: linear-gradient(to bottom, #ef4444, #dc2626, #b91c1c);
         }
         .glass-effect {
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
+        .btn-glow:hover {
+          box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
         }
       `}</style>
 
-      {/* Enhanced Hero Section with breadcrumb */}
+      {/* Enhanced Hero Section */}
       <section className="relative py-24 hero-gradient text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
@@ -245,7 +275,7 @@ const OptimizedAbout = () => {
             <div className="flex items-center space-x-2 text-white/70 text-sm">
               <span>Beranda</span>
               <ArrowRight className="w-4 h-4" />
-              <span className="text-white font-medium">Tentang Kami</span>
+              <span className="text-white font-medium">Program Kursus</span>
             </div>
           </nav>
 
@@ -254,300 +284,209 @@ const OptimizedAbout = () => {
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}>
               <span className="inline-block mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-full text-sm font-medium">
-                🏢 Tentang RADAR Education Center
+                🎓 Program Kursus IT Terpopuler
               </span>
             </div>
             
             <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-1000 ease-out delay-200 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}>
-              Media Terdepan
+              Kembangkan Skill IT Anda
               <span className="block text-white/90 text-3xl md:text-4xl lg:text-5xl mt-2">
-                Meningkatkan Skill IT Indonesia
+                Dari Pemula Hingga Profesional
               </span>
             </h1>
             
-            <p className={`text-xl md:text-2xl max-w-4xl mx-auto opacity-90 leading-relaxed transition-all duration-1000 ease-out delay-400 ${
+            <p className={`text-xl md:text-2xl max-w-4xl mx-auto opacity-90 leading-relaxed mb-8 transition-all duration-1000 ease-out delay-400 ${
               heroVisible ? 'opacity-90 translate-y-0' : 'opacity-0 translate-y-6'
             }`}>
-              Sejak 2008, RADAR Education Center telah menjadi pionir pendidikan IT terpercaya, 
-              mengembangkan talenta teknologi dari tingkat pemula hingga profesional di seluruh Indonesia.
+              Pilih dari 4 kategori kursus unggulan dengan kurikulum yang selalu update, 
+              instruktur berpengalaman, dan sertifikat yang diakui industri.
             </p>
+
+            {/* Quick Stats */}
+            <div className={`grid grid-cols-3 gap-4 sm:gap-8 max-w-lg sm:max-w-2xl mx-auto text-center transition-all duration-1000 ease-out delay-600 ${
+              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">750+</div>
+                <div className="text-xs sm:text-sm opacity-75">Alumni</div>
+              </div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">4.8/5</div>
+                <div className="text-xs sm:text-sm opacity-75">Rating</div>
+              </div>
+              <div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">85%</div>
+                <div className="text-xs sm:text-sm opacity-75">Job Rate</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Company Story with better visual hierarchy */}
-      <section ref={storyRef} className="py-24 bg-white">
+      {/* Enhanced Filter & Search Section */}
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`transition-all duration-1200 ease-out ${
-              storyVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-            }`}>
-              <span className="inline-block mb-6 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
-                Cerita Kami
-              </span>
-              
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 gradient-text leading-tight">
-                16 Tahun Dedikasi dalam Pendidikan IT
-              </h2>
-              
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
-                <p>
-                  <strong className="text-gray-900">RADAR Education Center</strong> lahir dari visi sederhana namun ambisius: 
-                  menjadikan teknologi informasi dapat diakses dan dikuasai oleh semua kalangan. 
-                  Kami percaya bahwa setiap orang memiliki potensi untuk berkembang di era digital ini.
-                </p>
-                
-                <p>
-                  Dengan pendekatan pembelajaran yang <strong className="text-red-600">70% praktek</strong> dan 
-                  <strong className="text-red-600"> 30% teori</strong>, kami memastikan setiap siswa tidak hanya 
-                  memahami konsep, tetapi juga mampu mengimplementasikan skill dalam dunia kerja nyata.
-                </p>
-                
-                <p>
-                  Tim instruktur kami terdiri dari praktisi industri dengan pengalaman puluhan tahun, 
-                  yang selalu mengupdate kurikulum mengikuti perkembangan teknologi terkini.
-                </p>
-              </div>
-
-              {/* Enhanced stats */}
-              <div className={`grid grid-cols-2 gap-6 mt-12 transition-all duration-1000 ease-out delay-600 ${
-                storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}>
-                <div className="text-center p-6 bg-gray-50 rounded-xl hover-lift smooth-transition">
-                  <div className="text-3xl font-bold gradient-text mb-2">1000+</div>
-                  <div className="text-sm text-gray-600 font-medium">Alumni Tersertifikasi</div>
-                  <div className="text-xs text-gray-500 mt-1">Sejak 2008</div>
-                </div>
-                <div className="text-center p-6 bg-gray-50 rounded-xl hover-lift smooth-transition">
-                  <div className="text-3xl font-bold gradient-text mb-2">85%</div>
-                  <div className="text-sm text-gray-600 font-medium">Job Placement Rate</div>
-                  <div className="text-xs text-gray-500 mt-1">Dalam 6 bulan</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Enhanced image section with floating elements */}
-            <div className={`relative transition-all duration-1200 ease-out delay-400 ${
-              storyVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-            }`}>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=500&fit=crop" 
-                  alt="RADAR Education Center - Suasana Pembelajaran Interaktif" 
-                  className="rounded-2xl shadow-2xl w-full hover-lift smooth-transition"
-                  loading="lazy"
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-center justify-between">
+              {/* Search */}
+              <div className="relative w-full md:flex-1 max-w-md">
+                <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 md:w-5 md:h-5" />
+                <input
+                  type="text"
+                  placeholder="Cari kursus..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 md:pl-12 pr-4 py-2 md:py-3 text-sm md:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent smooth-transition"
                 />
-                
-                {/* Floating achievement card */}
-                <div className={`absolute -bottom-8 -left-8 glass-effect text-red-600 p-6 rounded-2xl shadow-xl hover-lift animate-float transition-all duration-1000 ease-out delay-800 ${
-                  storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}>
-                  <div className="text-center">
-                    <Award className="w-8 h-8 mx-auto mb-2 text-red-600" />
-                    <div className="text-2xl font-bold gradient-text">16+</div>
-                    <div className="text-sm text-gray-700 font-medium">Tahun Pengalaman</div>
-                    <div className="text-xs text-gray-500">Terpercaya</div>
-                  </div>
-                </div>
+              </div>
 
-                {/* Floating rating card */}
-                <div className={`absolute -top-6 -right-6 glass-effect p-4 rounded-xl shadow-lg hover-lift transition-all duration-1000 ease-out delay-1000 ${
-                  storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}>
-                  <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    <span className="font-bold text-gray-900">4.8/5</span>
-                  </div>
-                  <div className="text-xs text-gray-600 mt-1">500+ Reviews</div>
-                </div>
+              {/* Categories */}
+              <div className="flex flex-wrap gap-2 md:gap-3 w-full md:w-auto">
+                {categories.map((category) => (
+                  <button
+                    key={category.name}
+                    onClick={() => setActiveCategory(category.name)}
+                    className={`px-3 md:px-6 py-1.5 md:py-2 text-xs md:text-sm rounded-lg font-medium smooth-transition hover-lift ${
+                      activeCategory === category.name
+                        ? 'bg-red-600 text-white shadow-lg'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    <span className="hidden sm:inline">{category.name} ({category.count})</span>
+                    <span className="sm:hidden">{category.name}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Company Timeline */}
-      <section ref={timelineRef} className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block mb-4 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
-              Perjalanan Kami
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
-              Milestone RADAR Education Center
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Dari startup lokal hingga menjadi rujukan pendidikan IT terpercaya di Indonesia
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 timeline-line h-full rounded-full"></div>
-            
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <div 
-                  key={index}
-                  className={`relative flex items-center transition-all duration-1000 ease-out ${
-                    timelineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  } ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  
-                  {/* Content */}
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
-                    <div className="bg-white p-6 rounded-xl shadow-lg hover-lift smooth-transition">
-                      <div className="flex items-center gap-3 mb-3">
-                        {index % 2 === 0 ? (
-                          <>
-                            <div className="text-red-600">{item.icon}</div>
-                            <span className="text-red-600 font-bold text-lg">{item.year}</span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="text-red-600 font-bold text-lg">{item.year}</span>
-                            <div className="text-red-600">{item.icon}</div>
-                          </>
-                        )}
-                      </div>
-                      <h3 className="font-bold text-lg mb-2 text-gray-900">{item.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Values Section */}
+      {/* Enhanced Courses Grid */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block mb-4 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
-              Keunggulan Kami
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
-              Mengapa 1000+ Siswa Memilih RADAR?
-            </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-              Komitmen kami untuk memberikan pendidikan IT berkualitas tinggi dengan pendekatan yang terbukti efektif
-            </p>
-          </div>
-          
-          <div ref={valuesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((value, index) => (
+          <div ref={coursesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {filteredCourses.map((course, index) => (
               <div 
-                key={index} 
-                className={`group relative p-8 bg-white rounded-2xl border border-gray-100 hover:border-red-200 hover:shadow-xl hover-lift smooth-transition transition-all duration-800 ease-out ${
-                  valueItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                key={course.id} 
+                className={`group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover-lift smooth-transition transition-all duration-800 ease-out ${
+                  visibleItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
-                {/* Highlight badge */}
-                <div className="absolute top-4 right-4 px-2 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-full opacity-0 group-hover:opacity-100 smooth-transition">
-                  {value.highlight}
-                </div>
-                
-                <div className="mb-6 group-hover:scale-110 smooth-transition">
-                  {value.icon}
-                </div>
-                
-                <h3 className="font-bold text-xl mb-2 text-gray-900 group-hover:text-red-600 smooth-transition">
-                  {value.title}
-                </h3>
-                
-                <div className="text-red-600 font-medium text-sm mb-4">
-                  {value.subtitle}
-                </div>
-                
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Instructors Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block mb-4 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
-              Tim Pengajar
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
-              Instruktur Berpengalaman & Tersertifikasi
-            </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-              Belajar langsung dari praktisi industri dengan pengalaman puluhan tahun dan sertifikasi internasional
-            </p>
-          </div>
-          
-          <div ref={instructorsRef} className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {instructors.map((instructor, index) => (
-              <div 
-                key={index} 
-                className={`group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover-lift smooth-transition transition-all duration-1000 ease-out ${
-                  instructorItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="aspect-[8/5] relative overflow-hidden">
+                {/* Course Image */}
+                <div className="aspect-[4/3] relative overflow-hidden">
                   <img 
-                    src={instructor.image} 
-                    alt={instructor.name}
+                    src={course.image} 
+                    alt={course.title}
                     className="w-full h-full object-cover group-hover:scale-105 smooth-transition"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 smooth-transition"></div>
                   
-                  {/* Rating badge */}
-                  <div className="absolute top-3 right-3 glass-effect px-2 py-1 rounded-lg">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                      <span className="text-xs font-medium text-gray-900">{instructor.rating}</span>
-                    </div>
+                  {/* Badges */}
+                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
+                    <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-medium rounded-md ${
+                      course.category === 'Programming' ? 'bg-blue-100 text-blue-800' :
+                      course.category === 'Office' ? 'bg-green-100 text-green-800' :
+                      'bg-purple-100 text-purple-800'
+                    }`}>
+                      {course.category}
+                    </span>
+                  </div>
+
+                  <div className="absolute top-2 sm:top-3 right-2 sm:right-3 flex flex-col gap-1">
+                    {course.popular && (
+                      <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-medium rounded-md">
+                        Popular
+                      </span>
+                    )}
+                    {course.discount && (
+                      <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-600 text-white text-xs font-bold rounded-md">
+                        -{course.discount}
+                      </span>
+                    )}
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="font-bold text-xl mb-1 text-gray-900 group-hover:text-red-600 smooth-transition">
-                    {instructor.name}
-                  </h3>
-                  
-                  <div className="inline-block px-2 py-1 bg-red-100 text-red-700 text-xs rounded-md mb-3 font-medium">
-                    {instructor.title}
-                  </div>
-                  
-                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
-                    <strong>Spesialisasi:</strong> {instructor.specialization}
-                  </p>
-                  
-                  <p className="text-sm text-red-600 font-medium mb-3">
-                    {instructor.experience}
-                  </p>
-                  
-                  {/* Credentials */}
-                  <div className="mb-3">
-                    <h4 className="font-semibold text-xs text-gray-900 mb-2">Sertifikasi & Kredensial:</h4>
-                    <div className="space-y-1">
-                      {instructor.credentials.map((cred, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
-                          <CheckCircle className="w-2.5 h-2.5 text-green-500 flex-shrink-0" />
-                          {cred}
-                        </div>
-                      ))}
+                {/* Course Content */}
+                <div className="p-3 sm:p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="font-bold text-base sm:text-lg gradient-text group-hover:scale-105 smooth-transition leading-tight">
+                      {course.title}
+                    </h3>
+                    <div className="flex items-center gap-1 ml-2 flex-shrink-0">
+                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      <span className="text-xs font-medium">{course.rating}</span>
                     </div>
                   </div>
                   
-                  <div className="text-xs text-gray-500 italic border-t pt-3">
-                    "{instructor.achievements}"
+                  <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-2">
+                    {course.description}
+                  </p>
+                  
+                  {/* Course Stats */}
+                  <div className="grid grid-cols-3 gap-1 sm:gap-2 mb-3 sm:mb-4 py-2 sm:py-3 bg-gray-50 rounded-lg">
+                    <div className="text-center">
+                      <Clock className="w-3 h-3 mx-auto mb-1 text-red-600" />
+                      <div className="text-xs font-medium">{course.duration}</div>
+                    </div>
+                    <div className="text-center">
+                      <Users className="w-3 h-3 mx-auto mb-1 text-red-600" />
+                      <div className="text-xs font-medium">{course.students}</div>
+                    </div>
+                    <div className="text-center">
+                      <Award className="w-3 h-3 mx-auto mb-1 text-red-600" />
+                      <div className="text-xs font-medium">Sertifikat</div>
+                    </div>
+                  </div>
+
+                  {/* Key Features */}
+                  <div className="mb-3 sm:mb-4">
+                    <h4 className="font-medium text-xs sm:text-sm mb-2 flex items-center gap-2">
+                      <BookOpen className="w-3 h-3 text-red-600" />
+                      <span className="hidden sm:inline">Materi Utama:</span>
+                      <span className="sm:hidden">Materi:</span>
+                    </h4>
+                    <div className="space-y-1">
+                      {course.features.slice(0, 2).map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-gray-600">
+                          <CheckCircle className="w-2 h-2 text-green-500 flex-shrink-0" />
+                          <span className="truncate">{feature}</span>
+                        </div>
+                      ))}
+                      <div className="text-xs text-gray-500">
+                        +{course.features.length - 2} lainnya
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Price & CTA */}
+                  <div className="border-t pt-3 sm:pt-4">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
+                      <div>
+                        <div className="flex items-center gap-1">
+                          <span className="text-base sm:text-lg font-bold text-red-600">{course.price}</span>
+                          {course.originalPrice && (
+                            <span className="text-xs sm:text-sm text-gray-400 line-through">{course.originalPrice}</span>
+                          )}
+                        </div>
+                        <div className="text-xs text-gray-500">Per program</div>
+                      </div>
+                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md hidden sm:inline">
+                        {course.level}
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      <button className="px-2 sm:px-3 py-1.5 sm:py-2 border border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 smooth-transition text-xs sm:text-sm">
+                        Detail
+                      </button>
+                      <button className="px-2 sm:px-3 py-1.5 sm:py-2 hero-gradient text-white font-medium rounded-md hover:scale-105 smooth-transition btn-glow text-xs sm:text-sm">
+                        Daftar
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -556,43 +495,48 @@ const OptimizedAbout = () => {
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section ref={achievementsRef} className="py-20 bg-red-600 text-white">
+      {/* Learning Guarantee */}
+      <section ref={guaranteeRef} className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className={`text-3xl md:text-4xl font-bold mb-4 transition-all duration-1000 ease-out ${
-              achievementsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}>
-              Pencapaian yang Membanggakan
+            <span className="inline-block mb-4 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
+              Jaminan Pembelajaran
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+              Komitmen Kami untuk Kesuksesan Anda
             </h2>
-            <p className={`text-xl opacity-90 max-w-2xl mx-auto transition-all duration-1000 ease-out delay-200 ${
-              achievementsVisible ? 'opacity-90 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}>
-              Angka-angka yang menunjukkan komitmen kami terhadap kualitas pendidikan IT
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Kami tidak hanya mengajar, tapi memastikan Anda benar-benar menguasai skill yang dipelajari
             </p>
           </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {guaranteeFeatures.map((feature, index) => (
               <div 
                 key={index}
-                className={`text-center transition-all duration-1000 ease-out ${
-                  achievementsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                className={`group bg-white p-8 rounded-2xl shadow-lg text-center hover:shadow-xl hover-lift smooth-transition transition-all duration-800 ease-out ${
+                  guaranteeItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="text-4xl md:text-5xl font-bold mb-3 hover:scale-110 smooth-transition">
-                  {achievement.number}
+                <div className="w-16 h-16 mx-auto mb-6 bg-red-50 rounded-2xl flex items-center justify-center group-hover:scale-110 smooth-transition">
+                  {feature.icon}
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{achievement.label}</h3>
-                <p className="text-sm opacity-80">{achievement.description}</p>
+                <h3 className="font-bold text-xl mb-3 group-hover:text-red-600 smooth-transition">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  {feature.description}
+                </p>
+                <div className="inline-block px-3 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-full">
+                  {feature.highlight}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Enhanced Contact CTA */}
+      {/* Enhanced CTA Section */}
       <section ref={ctaRef} className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-3xl p-12 text-white text-center relative overflow-hidden">
@@ -602,53 +546,35 @@ const OptimizedAbout = () => {
               <h2 className={`text-3xl md:text-4xl font-bold mb-6 transition-all duration-1000 ease-out ${
                 ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}>
-                Siap Memulai Perjalanan IT Anda Bersama Kami?
+                Mulai Investasi Terbaik untuk Masa Depan Anda
               </h2>
               
               <p className={`text-xl opacity-90 mb-8 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 ease-out delay-200 ${
                 ctaVisible ? 'opacity-90 translate-y-0' : 'opacity-0 translate-y-6'
               }`}>
-                Bergabunglah dengan 1000+ alumni yang telah mempercayai RADAR Education Center 
-                untuk mengembangkan karir mereka di bidang teknologi informasi.
+                Konsultasi GRATIS untuk menentukan program yang tepat sesuai tujuan karir dan skill level Anda saat ini.
               </p>
               
-              {/* Contact info cards */}
-              <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10 transition-all duration-1000 ease-out delay-400 ${
+              {/* Contact options */}
+              <div className={`flex flex-col sm:flex-row gap-4 justify-center mb-8 transition-all duration-1000 ease-out delay-400 ${
                 ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}>
-                <div className="glass-effect text-gray-900 p-4 sm:p-6 rounded-xl hover-lift smooth-transition">
-                  <Phone className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mx-auto mb-2 sm:mb-3" />
-                  <h3 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Telepon & WhatsApp</h3>
-                  <p className="text-xs sm:text-sm">0857-8276-3529</p>
-                  <p className="text-xs text-gray-500 mt-1">Respon cepat via WA</p>
-                </div>
-                
-                <div className="glass-effect text-gray-900 p-4 sm:p-6 rounded-xl hover-lift smooth-transition">
-                  <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mx-auto mb-2 sm:mb-3" />
-                  <h3 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Email Resmi</h3>
-                  <p className="text-xs sm:text-sm">asep@radarteknologikomputer.id</p>
-                  <p className="text-xs text-gray-500 mt-1">Info lengkap via email</p>
-                </div>
-                
-                <div className="glass-effect text-gray-900 p-4 sm:p-6 rounded-xl hover-lift smooth-transition">
-                  <MapPin className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mx-auto mb-2 sm:mb-3" />
-                  <h3 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Lokasi Kursus</h3>
-                  <p className="text-xs sm:text-sm">Tangerang, Banten</p>
-                  <p className="text-xs text-gray-500 mt-1">Mudah dijangkau</p>
-                </div>
-              </div>
-              
-              <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 ease-out delay-600 ${
-                ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}>
-                <button className="inline-flex items-center justify-center px-8 py-4 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-100 hover:scale-105 smooth-transition shadow-lg">
+                <button className="inline-flex items-center justify-center px-8 py-4 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-100 hover:scale-105 smooth-transition btn-glow">
                   <Phone className="w-5 h-5 mr-2" />
-                  Konsultasi Gratis
+                  Konsultasi Via WhatsApp
                 </button>
                 <button className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-red-600 hover:scale-105 smooth-transition">
-                  Lihat Program Kursus
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <Download className="w-5 h-5 mr-2" />
+                  Download Brosur Program
                 </button>
+              </div>
+
+              {/* Quick contact info */}
+              <div className={`text-center opacity-80 transition-all duration-1000 ease-out delay-600 ${
+                ctaVisible ? 'opacity-80 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}>
+                <p className="text-sm mb-2">Atau hubungi langsung:</p>
+                <p className="font-semibold">0857-8276-3529 (WhatsApp) • asep@radarteknologikomputer.id</p>
               </div>
             </div>
           </div>
@@ -658,4 +584,4 @@ const OptimizedAbout = () => {
   );
 };
 
-export default OptimizedAbout;
+export default OptimizedCourses;
