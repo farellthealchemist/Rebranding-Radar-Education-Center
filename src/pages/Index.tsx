@@ -397,9 +397,50 @@ const Homepage = () => {
                   <div className="text-xs sm:text-sm lg:text-base opacity-75 leading-tight">Tahun Pengalaman</div>
                 </div>
               </div>
+
+              {/* Instructor Cards - Positioned after stats */}
+              <div className={`mt-8 sm:mt-12 lg:hidden flex flex-col space-y-4 transition-all duration-1000 ease-out delay-1000 ${
+                heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
+                <div className="w-full p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" 
+                      alt="Asep Surahmat M.Kom" 
+                      className="w-12 h-12 rounded-full object-cover border-2 border-red-600/20 hover-scale smooth-transition flex-shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 smooth-transition text-sm sm:text-base truncate">Asep Surahmat M.Kom</h3>
+                      <p className="text-xs sm:text-sm text-gray-500 mb-2">Lead Instructor</p>
+                      <div className="flex items-center gap-2 px-2 py-1 bg-gradient-to-r from-red-50 to-red-100 rounded-full hover-scale smooth-transition">
+                        <MapPin className="w-3 h-3 text-red-600 animate-pulse-soft flex-shrink-0" />
+                        <span className="text-xs text-red-700 font-medium truncate">15+ Tahun Exp</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <img 
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" 
+                      alt="Rizqi Darmawan" 
+                      className="w-12 h-12 rounded-full object-cover border-2 border-red-600/20 hover-scale smooth-transition flex-shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 smooth-transition text-sm sm:text-base truncate">Rizqi Darmawan</h3>
+                      <p className="text-xs sm:text-sm text-gray-500 mb-2">Senior Instructor</p>
+                      <div className="flex items-center gap-2 px-2 py-1 bg-gray-100 rounded-full hover-scale smooth-transition">
+                        <Shield className="w-3 h-3 text-gray-500 flex-shrink-0" />
+                        <span className="text-xs text-gray-700 truncate">Network Expert</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div className={`relative order-1 lg:order-2 flex sm:flex justify-center lg:justify-end items-center lg:items-start transition-all duration-1000 ease-out delay-400 ${
+            <div className={`relative order-1 lg:order-2 hidden lg:flex justify-center lg:justify-end items-center lg:items-start transition-all duration-1000 ease-out delay-400 ${
               heroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
             }`}>
               <div className="w-full max-w-sm lg:max-w-none">
