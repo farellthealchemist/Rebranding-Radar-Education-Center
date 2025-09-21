@@ -254,6 +254,20 @@ const Homepage = () => {
     .hero-gradient {
       background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%);
     }
+    .hero-bg {
+      background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&h=900&fit=crop&crop=center');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    @media (max-width: 640px) {
+      .hero-bg {
+        background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&h=1200&fit=crop&crop=faces');
+        background-position: center top;
+      }
+    }
     .gradient-text-animated {
       background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c);
       background-clip: text;
@@ -327,7 +341,7 @@ const Homepage = () => {
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-16 sm:pt-20 pb-20 sm:pb-24 overflow-hidden min-h-screen flex items-center">
+      <section ref={heroRef} className="relative pt-16 sm:pt-20 pb-20 sm:pb-24 overflow-hidden min-h-screen flex items-center hero-bg">
         <div className="absolute inset-0 hero-gradient"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
