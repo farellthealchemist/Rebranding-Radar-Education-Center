@@ -235,9 +235,9 @@ const OptimizedAbout = () => {
       {/* Enhanced Hero Section with breadcrumb */}
       <section className="relative py-24 hero-gradient text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className={`mb-8 transition-all duration-800 ease-out ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -274,21 +274,21 @@ const OptimizedAbout = () => {
               mengembangkan talenta teknologi dari tingkat pemula hingga profesional di seluruh Indonesia.
             </p>
 
-            {/* Quick Stats - Added like courses page */}
+            {/* Company Stats */}
             <div className={`grid grid-cols-3 gap-4 sm:gap-8 max-w-lg sm:max-w-2xl mx-auto text-center transition-all duration-1000 ease-out delay-600 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}>
               <div>
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">1000+</div>
-                <div className="text-xs sm:text-sm opacity-75">Alumni</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">2008</div>
+                <div className="text-xs sm:text-sm opacity-75">Didirikan</div>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">4.8/5</div>
-                <div className="text-xs sm:text-sm opacity-75">Rating</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">50+</div>
+                <div className="text-xs sm:text-sm opacity-75">Program</div>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">16+</div>
-                <div className="text-xs sm:text-sm opacity-75">Tahun</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">15+</div>
+                <div className="text-xs sm:text-sm opacity-75">Instruktur</div>
               </div>
             </div>
           </div>
@@ -296,21 +296,21 @@ const OptimizedAbout = () => {
       </section>
 
       {/* Enhanced Company Story with better visual hierarchy */}
-      <section ref={storyRef} className="py-24 bg-white">
+      <section ref={storyRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`transition-all duration-1200 ease-out ${
-              storyVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className={`transition-all duration-1000 ease-out ${
+              storyVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
             }`}>
-              <span className="inline-block mb-6 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
+              <span className="inline-block mb-4 px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium">
                 Cerita Kami
               </span>
               
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 gradient-text leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text leading-tight">
                 16 Tahun Dedikasi dalam Pendidikan IT
               </h2>
               
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
                   <strong className="text-gray-900">RADAR Education Center</strong> lahir dari visi sederhana namun ambisius: 
                   menjadikan teknologi informasi dapat diakses dan dikuasai oleh semua kalangan. 
@@ -330,16 +330,16 @@ const OptimizedAbout = () => {
               </div>
 
               {/* Enhanced stats */}
-              <div className={`grid grid-cols-2 gap-6 mt-12 transition-all duration-1000 ease-out delay-600 ${
-                storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              <div className={`grid grid-cols-2 gap-4 mt-8 transition-all duration-800 ease-out delay-400 ${
+                storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                <div className="text-center p-6 bg-gray-50 rounded-xl hover-lift smooth-transition">
-                  <div className="text-3xl font-bold gradient-text mb-2">1000+</div>
+                <div className="text-center p-4 bg-gray-50 rounded-xl hover-lift smooth-transition">
+                  <div className="text-2xl font-bold gradient-text mb-1">1000+</div>
                   <div className="text-sm text-gray-600 font-medium">Alumni Tersertifikasi</div>
                   <div className="text-xs text-gray-500 mt-1">Sejak 2008</div>
                 </div>
-                <div className="text-center p-6 bg-gray-50 rounded-xl hover-lift smooth-transition">
-                  <div className="text-3xl font-bold gradient-text mb-2">85%</div>
+                <div className="text-center p-4 bg-gray-50 rounded-xl hover-lift smooth-transition">
+                  <div className="text-2xl font-bold gradient-text mb-1">85%</div>
                   <div className="text-sm text-gray-600 font-medium">Job Placement Rate</div>
                   <div className="text-xs text-gray-500 mt-1">Dalam 6 bulan</div>
                 </div>
@@ -347,36 +347,36 @@ const OptimizedAbout = () => {
             </div>
             
             {/* Enhanced image section with floating elements */}
-            <div className={`relative transition-all duration-1200 ease-out delay-400 ${
-              storyVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            <div className={`relative transition-all duration-1000 ease-out delay-300 ${
+              storyVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
             }`}>
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=500&fit=crop" 
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" 
                   alt="RADAR Education Center - Suasana Pembelajaran Interaktif" 
-                  className="rounded-2xl shadow-2xl w-full hover-lift smooth-transition"
+                  className="rounded-2xl shadow-xl w-full hover-lift smooth-transition"
                   loading="lazy"
                 />
                 
                 {/* Floating achievement card */}
-                <div className={`absolute -bottom-8 -left-8 glass-effect text-red-600 p-6 rounded-2xl shadow-xl hover-lift animate-float transition-all duration-1000 ease-out delay-800 ${
-                  storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                <div className={`absolute -bottom-6 -left-6 bg-white text-red-600 p-4 rounded-2xl shadow-xl hover-lift animate-float transition-all duration-800 ease-out delay-600 ${
+                  storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
                   <div className="text-center">
-                    <Award className="w-8 h-8 mx-auto mb-2 text-red-600" />
-                    <div className="text-2xl font-bold gradient-text">16+</div>
-                    <div className="text-sm text-gray-700 font-medium">Tahun Pengalaman</div>
+                    <Award className="w-6 h-6 mx-auto mb-1 text-red-600" />
+                    <div className="text-xl font-bold gradient-text">16+</div>
+                    <div className="text-xs text-gray-700 font-medium">Tahun Pengalaman</div>
                     <div className="text-xs text-gray-500">Terpercaya</div>
                   </div>
                 </div>
 
                 {/* Floating rating card */}
-                <div className={`absolute -top-6 -right-6 glass-effect p-4 rounded-xl shadow-lg hover-lift transition-all duration-1000 ease-out delay-1000 ${
-                  storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                <div className={`absolute -top-4 -right-4 bg-white p-3 rounded-xl shadow-lg hover-lift transition-all duration-800 ease-out delay-800 ${
+                  storyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
-                  <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    <span className="font-bold text-gray-900">4.8/5</span>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <span className="font-bold text-gray-900 text-sm">4.8/5</span>
                   </div>
                   <div className="text-xs text-gray-600 mt-1">500+ Reviews</div>
                 </div>
