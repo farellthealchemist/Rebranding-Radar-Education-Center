@@ -252,21 +252,14 @@ const Homepage = () => {
 
   const styles = `
     .hero-gradient {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%);
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     }
-    .hero-bg {
-      background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&h=900&fit=crop&crop=center');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      min-height: 100vh;
-      min-height: 100dvh;
-    }
-    @media (max-width: 640px) {
-      .hero-bg {
-        background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&h=1200&fit=crop&crop=faces');
-        background-position: center top;
-      }
+    .hero-pattern {
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+      background-size: 60px 60px, 40px 40px, 80px 80px;
     }
     .gradient-text-animated {
       background: linear-gradient(45deg, #ef4444, #dc2626, #b91c1c);
@@ -341,7 +334,7 @@ const Homepage = () => {
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-16 sm:pt-20 pb-20 sm:pb-24 overflow-hidden min-h-screen flex items-center hero-bg">
+      <section ref={heroRef} className="relative pt-24 sm:pt-28 pb-20 sm:pb-24 overflow-hidden min-h-screen flex items-center hero-gradient hero-pattern">
         <div className="absolute inset-0 hero-gradient"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div 
@@ -359,7 +352,7 @@ const Homepage = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             <div className="text-white order-2 lg:order-1">
-              <div className={`transition-all duration-800 ease-out ${
+              <div className={`transition-all duration-800 ease-out mt-4 sm:mt-6 ${
                 heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 <span className="inline-block mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-white/20 text-white border border-white/30 rounded-full text-xs sm:text-sm font-medium">
