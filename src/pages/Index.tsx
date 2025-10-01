@@ -489,14 +489,14 @@ const Homepage = () => {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=800&fit=crop)",
+            backgroundImage: "url(https://images.unsplash.com/photo-1588072432836-e10032774350?w=1920&h=1080&fit=crop&q=80)",
             backgroundSize: "cover",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "scroll"
           }}
         ></div>
-        <div className="absolute inset-0 bg-red-600/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-900/95 via-red-800/90 to-red-700/85"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
