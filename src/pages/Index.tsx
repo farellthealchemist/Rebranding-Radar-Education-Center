@@ -562,7 +562,7 @@ const Homepage = () => {
                     className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:from-black/60 smooth-transition"></div>
-                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white group-hover:scale-110 group-hover:text-red-400 smooth-transition">
+                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white smooth-transition">
                     {renderServiceIcon(service.id)}
                   </div>
                   {service.popular && (
@@ -578,7 +578,7 @@ const Homepage = () => {
                 </div>
                 
                 <div className="p-4 sm:p-5 lg:p-6 relative">
-                  <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 group-hover:text-red-600 smooth-transition line-clamp-1">
+                  <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 smooth-transition line-clamp-1 text-red-600">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-2">
@@ -587,7 +587,7 @@ const Homepage = () => {
                   
                   <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
                     {service.courses.slice(0, 2).map((course, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-500 hover:text-gray-700 smooth-transition group/item">
+                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-500 smooth-transition group/item">
                         <CheckCircle className="w-3 h-3 text-red-600 flex-shrink-0 group-hover/item:scale-110 smooth-transition" />
                         <span className="truncate">{course}</span>
                       </div>
@@ -602,7 +602,7 @@ const Homepage = () => {
                     <span className="text-gray-500">{service.duration}</span>
                   </div>
                   
-                  <Link to="/courses" className="w-full py-2 sm:py-2.5 text-xs sm:text-sm border border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white smooth-transition btn-glow font-medium flex items-center justify-center">
+                  <Link to="/courses" className="w-full py-2 sm:py-2.5 text-xs sm:text-sm border border-red-600 text-red-600 rounded-lg smooth-transition btn-glow font-medium flex items-center justify-center">
                     Pelajari Lebih Lanjut
                   </Link>
                 </div>
@@ -831,42 +831,42 @@ const Homepage = () => {
                 {faqs.map((item, index) => (
                   <div
                     key={index}
-                    className={`bg-white rounded-xl border border-gray-200 shadow-card overflow-hidden transition-all duration-500 ease-out ${
+                    className={`bg-white rounded-xl border border-gray-200 shadow-card overflow-hidden transition-all duration-300 ease-in-out ${
                       openFaqIndex === index ? 'ring-2 ring-red-100 border-red-200 shadow-lg' : ''
                     }`}
                   >
                     <button
                       onClick={() => toggleFaq(index)}
                       disabled={isFaqAnimating}
-                      className="w-full p-6 text-left focus:outline-none focus:ring-4 focus:ring-red-100 transition-all duration-300 ease-out"
+                      className="w-full p-6 text-left focus:outline-none focus:ring-4 focus:ring-red-100 transition-all duration-200 ease-in-out"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-start gap-4 flex-1">
-                          <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-400 ease-out ${
+                          <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-in-out ${
                             openFaqIndex === index 
-                              ? 'bg-red-100 scale-110 rotate-6' 
+                              ? 'bg-red-100 scale-110' 
                               : 'bg-red-50'
                           }`}>
-                            <HelpCircle className={`w-5 h-5 transition-all duration-400 ease-out ${
+                            <HelpCircle className={`w-5 h-5 transition-all duration-300 ease-in-out ${
                               openFaqIndex === index 
                                 ? 'text-red-600 scale-110' 
                                 : 'text-red-600'
                             }`} />
                           </div>
-                          <h3 className={`font-bold text-lg leading-tight transition-all duration-400 ease-out ${
+                          <h3 className={`font-bold text-lg leading-tight transition-all duration-300 ease-in-out ${
                             openFaqIndex === index 
-                              ? 'text-red-600 scale-105' 
+                              ? 'text-red-600' 
                               : 'text-gray-900'
                           }`}>
                             {item.question}
                           </h3>
                         </div>
-                        <div className={`flex-shrink-0 ml-4 p-2 rounded-full transition-all duration-500 ease-out ${
+                        <div className={`flex-shrink-0 ml-4 p-2 rounded-full transition-all duration-300 ease-in-out ${
                           openFaqIndex === index 
-                            ? 'bg-red-100 rotate-180 scale-110' 
-                            : 'bg-gray-100'
+                            ? 'bg-red-100 rotate-180' 
+                            : 'bg-gray-100 rotate-0'
                         }`}>
-                          <ChevronDown className={`w-5 h-5 transition-all duration-500 ease-out ${
+                          <ChevronDown className={`w-5 h-5 transition-all duration-300 ease-in-out ${
                             openFaqIndex === index ? 'text-red-600' : 'text-gray-500'
                           }`} />
                         </div>
@@ -874,39 +874,23 @@ const Homepage = () => {
                     </button>
                     
                     <div 
-                      className={`overflow-hidden transition-all duration-600 ${
-                        openFaqIndex === index 
-                          ? 'max-h-96 opacity-100 ease-out' 
-                          : 'max-h-0 opacity-0 ease-in'
-                      }`}
+                      className="transition-all duration-500 ease-in-out overflow-hidden"
                       style={{
-                        transitionTimingFunction: openFaqIndex === index 
-                          ? 'cubic-bezier(0.4, 0, 0.2, 1)' 
-                          : 'cubic-bezier(0.4, 0, 1, 1)'
+                        maxHeight: openFaqIndex === index ? '500px' : '0',
+                        opacity: openFaqIndex === index ? 1 : 0
                       }}
                     >
-                      <div className={`px-6 pb-6 transition-all duration-500 ${
-                        openFaqIndex === index 
-                          ? 'transform translate-y-0 opacity-100 delay-75' 
-                          : 'transform -translate-y-3 opacity-0 delay-0'
-                      }`}>
+                      <div className="px-6 pb-6">
                         <div className="ml-14 pt-2">
-                          <div className={`border-t transition-all duration-400 ${
+                          <div className={`border-t transition-all duration-300 ease-in-out ${
                             openFaqIndex === index 
-                              ? 'border-red-200 bg-gradient-to-r from-red-50 to-transparent ease-out' 
-                              : 'border-gray-100 ease-in'
+                              ? 'border-red-200' 
+                              : 'border-gray-100'
                           } rounded-sm`}></div>
                           
-                          <div className={`mt-4 transition-all duration-500 ${
-                            openFaqIndex === index 
-                              ? 'opacity-100 transform translate-y-0 delay-150 ease-out' 
-                              : 'opacity-0 transform translate-y-2 delay-0 ease-in'
-                          }`}>
-                            <p className="text-gray-600 leading-relaxed text-base relative">
-                              <span className={`absolute inset-0 bg-gradient-to-r from-red-50/20 to-transparent rounded-lg transition-opacity duration-400 ${
-                                openFaqIndex === index ? 'opacity-100' : 'opacity-0'
-                              }`}></span>
-                              <span className="relative z-10">{item.answer}</span>
+                          <div className="mt-4">
+                            <p className="text-gray-600 leading-relaxed text-base">
+                              {item.answer}
                             </p>
                           </div>
                         </div>
