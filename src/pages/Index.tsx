@@ -552,16 +552,16 @@ const Homepage = () => {
             {services.map((service, index) => (
               <div 
                 key={service.id} 
-                className={`group bg-white rounded-lg border hover-lift shadow-card hover:shadow-card-hover overflow-hidden smooth-transition pulse-border transition-all duration-800 ease-out ${
+                className={`group bg-white hover:bg-white rounded-lg border hover-lift shadow-card hover:shadow-card-hover overflow-hidden smooth-transition pulse-border transition-all duration-800 ease-out ${
                   visibleItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}>
-                <div className="aspect-video relative overflow-hidden">
+                <div className="aspect-video relative overflow-hidden bg-white">
                   <img 
                     src={service.image} 
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:from-black/60 smooth-transition"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent smooth-transition"></div>
                   <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white smooth-transition">
                     {renderServiceIcon(service.id)}
                   </div>
@@ -577,8 +577,8 @@ const Homepage = () => {
                   </div>
                 </div>
                 
-                <div className="p-4 sm:p-5 lg:p-6 relative">
-                  <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 smooth-transition line-clamp-1 text-red-600">
+                <div className="p-4 sm:p-5 lg:p-6 relative bg-white">
+                  <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 text-red-600 smooth-transition line-clamp-1">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-2">
@@ -587,8 +587,8 @@ const Homepage = () => {
                   
                   <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
                     {service.courses.slice(0, 2).map((course, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-500 smooth-transition group/item">
-                        <CheckCircle className="w-3 h-3 text-red-600 flex-shrink-0 group-hover/item:scale-110 smooth-transition" />
+                      <div key={idx} className="flex items-center gap-2 text-xs text-gray-500 smooth-transition">
+                        <CheckCircle className="w-3 h-3 text-red-600 flex-shrink-0 smooth-transition" />
                         <span className="truncate">{course}</span>
                       </div>
                     ))}
