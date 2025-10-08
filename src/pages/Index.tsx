@@ -354,6 +354,19 @@ const Homepage = () => {
     .pulse-border:hover::before {
       opacity: 0.3;
     }
+    /* Override pulse-border untuk instructor cards - tetap putih */
+    .instructor-card.pulse-border::before {
+      display: none;
+    }
+    .instructor-card {
+      background-color: white !important;
+    }
+    .instructor-card:hover {
+      background-color: white !important;
+    }
+    .scale-103 {
+      transform: scale(1.03);
+    }
     .animate-pulse-soft {
       animation: pulseSoft 3s infinite;
     }
@@ -441,12 +454,13 @@ const Homepage = () => {
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Link>
               </div>
+            
 
               {/* Instructor Cards - Mobile Only */}
               <div className={`mt-16 sm:mt-20 mb-8 lg:hidden flex flex-col space-y-4 transition-all duration-1000 ease-out delay-800 ${
                 heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                <div className="w-full p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
+                <div className="w-full p-3 sm:p-4 bg-white instructor-card hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <img 
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" 
@@ -464,7 +478,7 @@ const Homepage = () => {
                   </div>
                 </div>
 
-                <div className="w-full p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
+                <div className="w-full p-3 sm:p-4 bg-white instructor-card hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl pulse-border">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <img 
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" 
@@ -483,14 +497,14 @@ const Homepage = () => {
                 </div>
               </div>
             </div>
-            
+                          
             {/* Instructor Cards - Desktop Only */}
             <div className={`relative order-1 lg:order-2 hidden lg:flex justify-center lg:justify-end items-center lg:items-start transition-all duration-1000 ease-out delay-400 ${
               heroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
             }`}>
               <div className="w-full max-w-sm lg:max-w-none">
                 <div className="flex flex-col space-y-3 sm:space-y-4 lg:space-y-6 lg:mt-8">
-                  <div className="w-full max-w-xs mx-auto lg:mx-0 sm:w-56 md:w-60 lg:w-64 p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl lg:rounded-2xl pulse-border">
+                  <div className="w-full max-w-xs mx-auto lg:mx-0 sm:w-56 md:w-60 lg:w-64 p-3 sm:p-4 bg-white instructor-card hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl lg:rounded-2xl pulse-border">
                     <div className="flex items-center gap-3 sm:gap-4">
                       <img 
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" 
@@ -508,7 +522,7 @@ const Homepage = () => {
                     </div>
                   </div>
 
-                  <div className="w-full max-w-xs mx-auto lg:mx-0 sm:w-56 md:w-60 lg:w-64 p-3 sm:p-4 bg-white hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl lg:rounded-2xl pulse-border">
+                  <div className="w-full max-w-xs mx-auto lg:mx-0 sm:w-56 md:w-60 lg:w-64 p-3 sm:p-4 bg-white instructor-card hover-lift shadow-card hover:shadow-card-hover smooth-transition rounded-xl lg:rounded-2xl pulse-border">
                     <div className="flex items-center gap-3 sm:gap-4">
                       <img 
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" 
@@ -572,13 +586,10 @@ const Homepage = () => {
                       </span>
                     </div>
                   )}
-                  <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 opacity-0 group-hover:opacity-100 smooth-transition">
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                  </div>
                 </div>
                 
                 <div className="p-4 sm:p-5 lg:p-6 relative bg-white">
-                  <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 text-red-600 smooth-transition line-clamp-1">
+                  <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-3 text-gray-900 group-hover:text-red-600 group-hover:scale-103 transition-all duration-300 ease-in-out line-clamp-1 cursor-pointer origin-left">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-2">
